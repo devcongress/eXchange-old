@@ -9,9 +9,12 @@ MONGODB_PORT = os.environ.get('MONGODB_PORT')
 app = Flask(__name__)
 app.config.from_object(__name__)
 
-connection = Connection(
-    app.config['MONGODB_HOST'], int(app.config['MONGODB_PORT'])
-)
+MONGOHQ_URL = os.environ.get('MONGOHQ_URL')
+
+if MONGOHQ_URL:
+  connection = Connection(MONGOHQ_URL)
+else:
+    connection = Connection(app.config['MONGODB_HOST'], int(app.config['MONGODB_PORT']))
 
 # Register models.
 connection.register([Guest])

@@ -11,39 +11,43 @@
   <body>
     <div class="wrap">
       {% block navigation %}
-      <nav class="navbar navbar-default" role="navigation">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <a class="navbar-brand" href="{{ url_for('home') }}">#eXchange</a>
-          </div>
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <li style="margin-top:10px;"><a href="https://twitter.com/devcongress" class="twitter-follow-button" data-show-count="true" data-lang="en">Follow @devcongress</a></li>
-            <li><a href="#">All #eXchanges</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Completed #eXchanges <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="/guests/edem-kumodzi">Edem Kumodzi</a></li>
-              </ul>
-            </li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Loading #eXchanges <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="/guests/alfred-rowe">Alfred Rowe</a></li>
-              </ul>
-            </li>
-          </ul>
-       </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
-    </nav>
+        <nav class="navbar navbar-default" role="navigation">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="{{ url_for('home') }}">#eXchange</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li style="margin-top:10px;"><a href="https://twitter.com/devcongress" class="twitter-follow-button" data-show-count="true" data-lang="en">Follow @devcongress</a></li>
+              <li><a href="#">All #eXchanges</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Completed #eXchanges <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="/guests/edem-kumodzi">Edem Kumodzi</a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Loading #eXchanges <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="/guests/alfred-rowe">Alfred Rowe</a></li>
+                </ul>
+              </li>
+            </ul>
+           </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+      </nav>
       {% endblock %}
       <div class="container">
-      <main>
+        <main>
+          <div class="slogan quote">"Working with masters is the best way to learn a craft." - quote from <a href="http://www.amazon.com/Apprenticeship-Patterns-Guidance-Aspiring-Craftsman/dp/0596518382/ref=lh_ni_t?ie=UTF8&psc=1&smid=ATVPDKIKX0DER">Apprenticeship Patterns</a></div>
         {% block content %}
         {% endblock %}
       </main>
-      <footer class="footer">A <a href="http://devcongress.com">DevCongress</a> innitative.<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></h1></div></footer>
-</div>
+      <footer class="footer">
+        A <a href="http://devcongress.com">DevCongress</a> innitative.<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></h1>
+      </footer>
+    </div>
+    </div>
       <script src="//code.jquery.com/jquery-2.1.0.min.js"></script>
       <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
       <script src="{{ url_for('static', filename='js/maze.min.js') }}"></script>

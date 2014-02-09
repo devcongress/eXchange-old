@@ -2,26 +2,26 @@ from mongokit import Connection, Document
 from datetime import datetime
 
 class Guest(Document):
-    '''A guest scheduled for an #eXchange session.
+    '''A guest scheduled for an #exchange session.
        List of all guests are available at http://exchange.devcongress.com/guests
     '''
 
-    __database__ = 'eXchange_on_the_bridge'
+    __database__ = 'exchange'
     __collection__ = 'guests'
 
     def scheduled_date_after_now(scheduled_date):
         def validate(scheduled_date):
             return scheduled_date.timestamp() - datetime.now().timestamp() > 14*24*60*60
-            raise Exception("Guests should be confirmed at least 2 weeks before their #eXchange is due.")
+            raise Exception("Guests should be confirmed/suggest at least 2 weeks before their #eXchange is due.")
 
     use_dot_notation = True
-    # required_fields = [
-                        # "firstname",
-                        # "lastname",
-                        # "email_address",
-                        # "bio",
-                        # "github"
-                      # ]
+    required_fields = [
+                        "firstname",
+                        "lastname",
+                        "email_address",
+                        "bio",
+                        "github"
+                      ]
 
     default_values = dict(created_at=datetime.utcnow, updated_at=datetime.utcnow)
 
@@ -61,5 +61,5 @@ class Guest(Document):
         return "{} {}".format(self.firstname, self.lastname)
 
     def __repr__(self):
-        return "<#eXchange Guest {} (Github: {}, Twitter: {})>".format(self.fullname(), self.github, self.twitter)
+        return "<#exchange Guest {} (Github: {}, Twitter: {})>".format(self.fullname(), self.github, self.twitter)
 

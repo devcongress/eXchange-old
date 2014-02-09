@@ -1,3 +1,4 @@
+  ##The #eXchange series
   `#eXchange` is a monthly remote Google Hangouts session with the most
   proactive and pragmatic of software engineers, designers, and copywriters in
   Ghana. It's run in the format of any programming podcast you've listened: a

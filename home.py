@@ -2,6 +2,7 @@ import os
 from flask import Flask, request, render_template, url_for
 from models import *
 
+# MongoDB settings (for development machine.)
 MONGODB_HOST = os.environ.get('MONGODB_HOST')
 MONGODB_PORT = os.environ.get('MONGODB_PORT')
 

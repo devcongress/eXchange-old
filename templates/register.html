@@ -1,7 +1,40 @@
 {% extends "application.html" %}
+{% block title %}New Guest{% endblock %}
 {% block content %}
   <div class="form">
-    <form action="/guests" method="post">
-    </form>
+    <h1>Recommend a guest.</h1>
+    <div class="form">
+      <form action="/guests" method="post">
+        <table>
+          <tbody>
+            <tr>
+              <td><label for="firstname">Full name</label></td>
+              <td><input name="firstname" type="text" autofocus="autofocus" placeholder="Susannah"/>&nbsp;<input name="lastname" type="text" placeholder="Raub"/></td>
+            </tr>
+            <tr>
+              <td><label for="email_address">Email address</label></td>
+              <td><input name="email_address" type="email" placeholder="suziraub@example.org"></td>
+            </tr>
+            <tr>
+              <td><label for="homepage">Homepage</label></td>
+              <td><input type="url" name="homepage" placeholder="Homepage URL"></td>
+            </tr>
+            <tr>
+              <td><label for="github">Github</label></td>
+              <td><input type="text" name="github" placeholder="susannahr"></td>
+            </tr>
+            <tr>
+              <td><label for="twitter">Twitter</label></td>
+              <td><input type="text" name="twitter" placeholder="susannahr"></td>
+            </tr>
+            <tr>
+              <td><label for="bio">Reason</label></td>
+              <td><textarea cols="50" rows="5" name="twitter" placeholder="I recommend PERSON_NAME_ABOVE because ..."></textarea></td>
+            </tr>
+            </tbody>
+        </table>
+        <input type="submit" value="I strongly recommend this person">
+      </form>
+    </div>
   </div>
 {% endblock %}

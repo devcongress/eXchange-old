@@ -1,0 +1,35 @@
+$top_margin: 2%;
+
+@mixin code_style($font_size) {
+  font-family: monaco, menlo, consolas, "liberation mono", "courier new", monospace;
+  font-size: $font_size;
+}
+
+@mixin form_input($padding, $margin) {
+  input, textarea {
+    border: 2px solid darken(indigo, 1);
+    background: transparentize(#dea, .8);
+    padding: $padding;
+    margin: $margin;
+  }
+
+  input[type=submit] {
+    background: #000;
+    color: #fff;
+    padding: 1%;
+  }
+}
+
+html, body, div, blockquote, p, span, hgroup, form, input { color: #000; }
+footer { margin-top: $top_margin; }
+.slogan { @include code_style(1.1em); }
+
+.form {
+  margin-top: $top_margin;
+  @include form_input(5px, 5px 3px);
+}
+.subheading {
+  margin-top: $top_margin;
+  text-decoration: underline;
+  font-weight: bold;
+}

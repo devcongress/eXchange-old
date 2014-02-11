@@ -9,27 +9,27 @@
           <tbody>
             <tr>
               <td><label for="firstname">Full name</label></td>
-              <td><input name="firstname" type="text" autofocus="autofocus" placeholder="Susannah"/>&nbsp;<input name="lastname" type="text" placeholder="Raub"/></td>
+              <td><input name="firstname" type="text" autofocus="autofocus" value="{{ firstname }}"/>&nbsp;<input name="lastname" type="text" value="{{ lastname }}"/></td>
             </tr>
             <tr>
               <td><label for="email_address">Email address</label></td>
-              <td><input name="email_address" type="email" placeholder="suziraub@example.org"></td>
+              <td><input name="email_address" type="email" value="{{ email_address }}"></td>
             </tr>
             <tr>
               <td><label for="homepage">Homepage</label></td>
-              <td><input type="url" name="homepage" placeholder="Homepage URL"></td>
+              <td><input type="url" name="homepage" value="{{ homepage }}"></td>
             </tr>
             <tr>
               <td><label for="github">Github</label></td>
-              <td><input type="text" name="github" placeholder="susannahr"></td>
+              <td><input type="text" name="github" value="{{ github }}"></td>
             </tr>
             <tr>
               <td><label for="twitter">Twitter</label></td>
-              <td><input type="text" name="twitter" placeholder="susannahr"></td>
+              <td><input type="text" name="twitter" value="{{ twitter }}"></td>
             </tr>
             <tr>
-              <td><label for="bio">Reason</label></td>
-              <td><textarea cols="50" rows="5" name="twitter" placeholder="I recommend PERSON_NAME_ABOVE because ..."></textarea></td>
+              <td><label for="bio">Reason</label><br/><small><em>(bio replaces this)</em></small></td>
+              <td><textarea cols="50" rows="5" name="bio" value="{{ bio }}"></textarea></td>
             </tr>
             </tbody>
         </table>

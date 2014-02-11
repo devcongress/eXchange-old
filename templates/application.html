@@ -40,11 +40,23 @@
       <div class="container">
         <main>
           <blockquote class="slogan">"Working with masters is the best way to learn a craft." - quote from <a href="http://www.amazon.com/Apprenticeship-Patterns-Guidance-Aspiring-Craftsman/dp/0596518382/ref=lh_ni_t?ie=UTF8&psc=1&smid=ATVPDKIKX0DER">Apprenticeship Patterns</a></blockquote>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul>
+              {% for message in messages %}
+              <li class="notice">{{ message }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
         {% block content %}
         {% endblock %}
       </main>
       <footer class="footer">
-        A <a href="http://devcongress.com">DevCongress</a> innitative.<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></h1>
+        Started in 2014, <strong><em>#eXchange</em></strong> is a <a href="http://devcongress.com">DevCongress</a> innitative—and
+        supported by our <strong>pragmatic</strong>, <strong>conscious</strong>
+        <a
+          href="https://groups.google.com/forum/?hl=en#!forum/devcongress">community</a>.<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></h1>
       </footer>
     </div>
     </div>

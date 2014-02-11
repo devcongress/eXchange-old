@@ -1,5 +1,9 @@
+import os
 from mongokit import Connection, Document
 from datetime import datetime
+
+MONGOHQ_URL=os.environ.get('MONGOHQ_URL')
+connection = Connection(MONGOHQ_URL) if MONGOHQ_URL else None
 
 class Guest(Document):
     '''A guest scheduled for an #exchange session.
@@ -19,8 +23,7 @@ class Guest(Document):
                         "firstname",
                         "lastname",
                         "email_address",
-                        "bio",
-                        "github"
+                        "bio"
                       ]
 
     default_values = dict(created_at=datetime.utcnow, updated_at=datetime.utcnow)
@@ -47,19 +50,9 @@ class Guest(Document):
         "actual_time_taken": float
     }
 
-    def __init__(self, firstname, lastname, email_address, bio, **kwargs):
-        self.firstname     = firstname.title()
-        self.lastname      = lastname.title()
-        self.email_address = email_address.lower()
-        github             = kwargs.get('github')
-        twitter            = kwargs.get('twitter')
-        facebook           = kwargs.get('facebook')
-        linkedin           = kwargs.get('linkedin')
-
-
     def fullname(self):
         return "{} {}".format(self.firstname, self.lastname)
 
     def __repr__(self):
-        return "<#exchange Guest {} (Github: {}, Twitter: {})>".format(self.fullname(), self.github, self.twitter)
+        return "<#exchange Guest (Name: {})>".format(self.fullname())
 

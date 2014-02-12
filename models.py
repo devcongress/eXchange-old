@@ -18,15 +18,14 @@ class Guest(Document):
             return scheduled_date.timestamp() - datetime.now().timestamp() > 14*24*60*60
             raise Exception("Guests should be confirmed/suggest at least 2 weeks before their #eXchange is due.")
 
-    use_dot_notation = True
-    required_fields = [
-                        "firstname",
-                        "lastname",
-                        "email_address",
-                        "bio"
-                      ]
+    def min_length(length):
+      def validate(value):
+        if len(value.strip()) >= length:
+          return True
+        raise Exception("%s should be at least %s characters." % (value,length))
 
-    default_values = dict(created_at=datetime.utcnow, updated_at=datetime.utcnow)
+      return validate
+
 
     structure = {
         "firstname"     : unicode,
@@ -49,6 +48,24 @@ class Guest(Document):
         "number_of_attendees": int,
         "actual_time_taken": float
     }
+
+    validators = {
+        'firstname'     : min_length(1),
+        'lastname'      : min_length(1),
+        'email_address' : min_length(1),
+        'bio'           : min_length(1)
+    }
+
+    use_dot_notation = True
+    required_fields = [
+                        "firstname",
+                        "lastname",
+                        "email_address",
+                        "bio"
+                      ]
+
+    default_values = dict(created_at=datetime.utcnow, updated_at=datetime.utcnow)
+
 
     def fullname(self):
         return "{} {}".format(self.firstname, self.lastname)

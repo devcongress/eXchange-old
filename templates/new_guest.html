@@ -9,27 +9,27 @@
           <tbody>
             <tr>
               <td><label for="firstname">Full name</label></td>
-              <td><input name="firstname" type="text" autofocus="autofocus" value="{{ firstname }}"/>&nbsp;<input name="lastname" type="text" value="{{ lastname }}"/></td>
+              <td><input name="firstname" type="text" autofocus="autofocus" value="{{request.form.firstname }}"/>&nbsp;<input name="lastname" type="text" value="{{request.form.lastname }}"/></td>
             </tr>
             <tr>
               <td><label for="email_address">Email address</label></td>
-              <td><input name="email_address" type="email" value="{{ email_address }}"></td>
+              <td><input name="email_address" type="email" value="{{request.form.email_address }}"></td>
             </tr>
             <tr>
               <td><label for="homepage">Homepage</label></td>
-              <td><input type="url" name="homepage" value="{{ homepage }}"></td>
+              <td><input type="url" name="homepage" value="{{request.form.homepage }}"></td>
             </tr>
             <tr>
               <td><label for="github">Github</label></td>
-              <td><input type="text" name="github" value="{{ github }}"></td>
+              <td><input type="text" name="github" value="{{request.form.github }}"></td>
             </tr>
             <tr>
               <td><label for="twitter">Twitter</label></td>
-              <td><input type="text" name="twitter" value="{{ twitter }}"></td>
+              <td><input type="text" name="twitter" value="{{request.form.twitter }}"></td>
             </tr>
             <tr>
               <td><label for="bio">Reason</label><br/><small><em>(bio replaces this)</em></small></td>
-              <td><textarea cols="50" rows="5" name="bio" value="{{ bio }}"></textarea></td>
+              <td><textarea cols="50" rows="5" name="bio" value="{{request.form.bio }}"></textarea></td>
             </tr>
             </tbody>
         </table>

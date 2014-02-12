@@ -26,6 +26,13 @@ $top_margin: 4%;
 html, body, div, blockquote, p, span, hgroup, form, input { color: #000; }
 footer { margin: $top_margin 0; }
 .slogan { @include code_style(1.1em); }
+.flash {
+  list-style: none;
+  padding: 5px;
+  text-align: center;
+}
+
+.notice { background: transparentize(#e065bb, .4); }
 
 .form {
   margin-top: $top_margin;

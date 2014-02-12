@@ -8,6 +8,14 @@ footer {
   font-family: monaco, menlo, consolas, "liberation mono", "courier new", monospace;
   font-size: 1.1em; }
 
+.flash {
+  list-style: none;
+  padding: 5px;
+  text-align: center; }
+
+.notice {
+  background: rgba(224, 101, 187, 0.6); }
+
 .form {
   margin-top: 4%; }
   .form input, .form textarea {

@@ -32,11 +32,11 @@ def guests():
     if request.method == 'POST':
         try:
             register_prospective_exchanger(request.form)
-            flash('Okay, we have received your recommendation')
+            flash('We got that! Thanks for working to improve #eXchange')
             return redirect(url_for('home'))
         except:
-            flash('Oops, I think you left some relevant data out')
-            return render_template("new_guest.html", **{k:str(v) for k,v in request.form.iteritems()})
+            flash('Oops, seems you left some data out.')
+            return render_template("new_guest.html")
 
     #GET
     return "List of completed and upcoming guests"

@@ -48,12 +48,14 @@ def guest(name):
         return render_template('new_guest.html')
 
     # real eXchangers and just some fool trying out endpoints
-    firstname, lastname = name.replace("-", " ").split()
-    guest = find_guest_by(firstname, lastname)
-    if not guest:
-        return render_404, 404
-
-    return render_template('guest.html', guest=guest)
+    try:
+        firstname, lastname = name.replace("-", " ").split()
+        guest = find_guest_by(firstname, lastname)
+        if not guest:
+            raise Exception()
+        return render_template('guest.html', guest=guest)
+    except:
+        return page_not_found()
 
 
 def register_prospective_exchanger(form_data=None):
@@ -70,8 +72,8 @@ def find_guest_by(firstname, lastname):
 # http errors
 
 @app.errorhandler(404)
-def page_not_found(error):
-    return render_template('page_not_found.html'), 404
+def page_not_found(error=None):
+    return render_template('404.html', error=error), 404
 
 if __name__ == '__main__': app.run(debug=True)
 

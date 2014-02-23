@@ -83,12 +83,6 @@ def register_member(role, form_data):
     role.save()
 
 
-def register_prospective_exchanger(form_data=None):
-    guest = guests_collection.Guest()
-    for attr,value in form_data.iteritems():
-        guest[attr] = value.strip()
-    guest.save()
-
 def find_guest_by(firstname, lastname):
     return guests_collection.Guest.find_one(
             {"firstname": firstname.title(), "lastname":lastname.title()}

@@ -39,7 +39,8 @@ def guests():
             register_member(guests_collection.Guest(), request.form)
             flash('We got that! Thanks for working to improve #eXchange')
             return redirect(url_for('home'))
-        except:
+        except Exception as e:
+            print e
             flash('Oops, seems you left some data out.')
             return render_template("new_guest.html")
 
@@ -78,8 +79,6 @@ def participants():
 def register_member(role, form_data):
     for attr,value in form_data.iteritems():
         role[attr] = value.strip()
-    print "DATABASE: %s, COLLECTION: %s successful." % (role.collection.database_name,
-                                                           role.collection.name)
     role.save()
 
 
@@ -87,6 +86,12 @@ def find_guest_by(firstname, lastname):
     return guests_collection.Guest.find_one(
             {"firstname": firstname.title(), "lastname":lastname.title()}
            )
+
+# model queries.
+
+def upcoming_exchanges():
+    return guests_collection.Guest.find({})
+def completed_exchanges(): pass
 
 # http errors
 

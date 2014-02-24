@@ -1,5 +1,23 @@
-{% extends 'application.html' %}
-{% block title %}404{% endblock %}
-{% block content %}
-  <p>This is a special page for the mentally astute.</p>
-{% endblock %}
+<!doctype html>
+<html>
+  <head><title>The Magnificent 404</title>
+    <style>
+      pre {
+        font-family: courier new, monaco, menlo, consolas, monospace;
+        font-size: 1.4em;
+        width: 80%;
+      }
+    </style>
+  </head>
+  <body>
+    <pre>
+    <h1>Congratulations on hitting 404!</h1>
+    Do you know how to implement the <strong><a href="http://en.wikipedia.org/wiki/Leaky_bucket">Leaky Bucket Algorithm</a></strong>?
+    Or can you implement a <strong><a href="http://en.wikipedia.org/wiki/Self-balancing_binary_search_tree">Self-balancing Binary Tree</a></strong>?
+    Otherwise <a href="{{ url_for("home") }}">checkout this page</a> first.
+
+    I love you,
+    Korea.
+    </pre>
+</body>
+</html>

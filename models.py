@@ -2,8 +2,8 @@ import os
 from mongokit import Connection, Document
 from datetime import datetime
 
-MONGOLAB_URI=os.environ.get('MONGOLAB_URI')
-connection = Connection(MONGOLAB_URI) if MONGOLAB_URI else None
+MONGOHQ_URL=os.environ.get('MONGOHQ_URL')
+connection = Connection(MONGOHQ_URL) if MONGOHQ_URL else None
 
 def min_length(limit):
     def validate(value):

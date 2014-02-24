@@ -1,9 +1,16 @@
 import os
+from urlparse import urlparse
 from mongokit import Connection, Document
 from datetime import datetime
 
 MONGOHQ_URL=os.environ.get('MONGOHQ_URL')
-connection = Connection(MONGOHQ_URL) if MONGOHQ_URL else None
+
+if MONGOHQ_URL:
+    mongohq = urlparse(MONGOHQ_URL)
+    connection = Connection(MONGOHQ_URL)
+    connection.authenticate(mongohq.username, mongohq.password)
+else:
+    connection = None
 
 def min_length(limit):
     def validate(value):

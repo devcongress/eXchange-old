@@ -1,16 +1,6 @@
 import os
-from urlparse import urlparse
-from mongokit import Connection, Document
+from flask.ext.mongokit import MongoKit, Document
 from datetime import datetime
-
-MONGOHQ_URL=os.environ.get('MONGOHQ_URL')
-
-if MONGOHQ_URL:
-    mongohq = urlparse(MONGOHQ_URL)
-    connection = Connection(MONGOHQ_URL)
-    connection.exchange.authenticate(mongohq.username, mongohq.password)
-else:
-    connection = None
 
 def min_length(limit):
     def validate(value):
@@ -22,7 +12,6 @@ def min_length(limit):
 
 class Participant(Document):
     '''A participant participates in exactly one event at a time. (I know this doesn't make sense.)'''
-    __database__ = "exchange"
     __collection__ = "participants"
 
     structure = {
@@ -47,7 +36,6 @@ class Guest(Document):
        List of all guests are available at http://exchange.devcongress.com/guests
     '''
 
-    __database__ = "exchange"
     __collection__ = "guests"
 
     def scheduled_date_after_now(scheduled_date):

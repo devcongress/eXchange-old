@@ -5,26 +5,38 @@ from flask import (
                    redirect,
                    request,
                    flash
-                   )
+                  )
 from hashlib import sha256
+from urlparse import urlparse
 from bson import ObjectId
 from models import *
 
-# MongoDB settings (for development machine.)
-MONGODB_HOST = os.environ.get('MONGODB_HOST')
-MONGODB_PORT = os.environ.get('MONGODB_PORT')
+# Database configurations
+MONGODB_DATABASE = 'exchange'
+
+# MongoHQ on Heroku
+MONGOHQ_URL = os.environ.get('MONGOHQ_URL')
+
+if MONGOHQ_URL:
+    credentials = urlparse(MONGOHQ_URL)
+    MONGODB_HOST = credentials.hostname
+    MONGODB_PORT = credentials.port
+    MONGODB_USERNAME = credentials.username
+    MONGODB_PASSWORD = credentials.password
+else:
+    # MongoDB settings (for development machine.)
+    MONGODB_HOST = os.environ.get('MONGODB_HOST')
+    MONGODB_PORT = os.environ.get('MONGODB_PORT')
 
 # Update app's configuration.
 app = Flask(__name__)
+app.config.from_object(__name__)
 app.secret_key = os.environ['EXCHANGE_SECRET']
 
-connection = connection or Connection(MONGODB_HOST, int(MONGODB_PORT))
 
-connection.register([Guest])
-connection.register([Participant])
-
-guests_collection = connection['exchange'].guests
-participants_collection = connection['exchange'].participants
+db = MongoKit(app)
+db.register([Guest])
+db.register([Participant])
 
 @app.route("/")
 def home():
@@ -36,7 +48,7 @@ def guests():
     #POST
     if request.method == 'POST':
         try:
-            register_member(guests_collection.Guest(), request.form)
+            register_member('guests', request.form)
             flash('We got that! Thanks for working to improve #eXchange')
             return redirect(url_for('home'))
         except Exception as e:
@@ -68,7 +80,7 @@ def participants():
     _id = ObjectId(request.form.get("exchange_id"))
     exchanger = guests_collection.Guest.get_from_id(_id)
     if exchanger:
-        try: register_member(participants_collection.Participant(), request.form)
+        try: register_member('participants', request.form)
         except Exception: flash("Error. Your details could not be saved.")
         else: flash("Great, we'd send you a Google Calendar invitation shortly.")
         finally:
@@ -76,13 +88,13 @@ def participants():
     return redirect(url_for("home"))
 
 def register_member(role, form_data):
-    for attr,value in form_data.iteritems():
-        role[attr] = value.strip()
-    role.save()
+    stripped = { k:v.strip() for k,v in form_data.iteritems() }
+    print stripped
+    db[role].insert(stripped)
 
 
 def find_guest_by(firstname, lastname):
-    return guests_collection.Guest.find_one(
+    return db['guests'].find_one(
             {"firstname": firstname.title(), "lastname":lastname.title()}
            )
 

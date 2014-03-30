@@ -42,13 +42,11 @@ db.register([Participant])
 @app.route("/")
 def home():
     done = db.Guest.find({'scheduled_for': {'$lt': datetime.utcnow()}})
-    print done.count()
     upcoming = db.Guest.find_one({'scheduled_for': {'$gt': datetime.utcnow()}})
-    print upcoming
     return render_template('index.html', upcoming=upcoming, done=done)
 
 @app.route("/exchanges")
-@app.route("/guests", methods=['POST'])
+@app.route("/guests", methods=['GET', 'POST'])
 def guests():
     #POST
     if request.method == 'POST':
@@ -57,12 +55,10 @@ def guests():
             flash('We got that! Thanks for working to improve #eXchange')
             return redirect(url_for('home'))
         except Exception as e:
-            print e
             return render_template("new_guest.html")
 
     #GET
-    all_exchanges = db.Guest.find()
-    return all_exchanges
+    return redirect(url_for('home'))
 
 @app.route("/guests/<name>")
 def guest(name):
@@ -73,11 +69,13 @@ def guest(name):
     # real eXchangers and just some fool trying out endpoints
     try:
         firstname, lastname = name.replace("-", " ").split()
+        print(firstname, lastname)
         guest = find_guest_by(firstname, lastname)
         if not guest:
             raise Exception()
-        return render_template('guest.html', guest=guest)
-    except:
+        return render_template('guest.html', guest=guest, now=datetime.utcnow())
+    except Exception as e:
+        print e
         return page_not_found()
 
 
@@ -95,7 +93,6 @@ def participants():
 
 def register_member(role, form_data):
     stripped = { k:v.strip() for k,v in form_data.iteritems() }
-    print stripped
     db[role].insert(stripped)
 
 

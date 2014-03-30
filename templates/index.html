@@ -2,13 +2,29 @@
 {% block title %}Home{% endblock %}
 {% block content %}
   <section class="content">
-    <h1>Upcoming #eXchange:</h1>
-    <div class="exchange-upcoming-guest">
-      <div class="exchanger-gravatar-image"></div>
-      <div class="exchanger-details">
-        <div class="exchanger-fullname"></div>
-        <div class="exchanger-bio"></div>
-      <div>
-    </div>
+    <section class="upcoming">
+      <h1>Upcoming <span class="code">#eXchange:</span></h1>
+      {% if upcoming %}
+      <div class="exchange-upcoming-guest">
+        <div class="exchanger-gravatar-image"></div>
+        <div class="exchanger-details">
+          <div class="exchanger-fullname">{{ upcoming.firstname }} {{ upcoming.lastname }}</div>
+          <div class="exchanger-bio">{{ upcoming.bio }}</div>
+        </div>
+      </div>
+    {% else %}
+    <h3 class="searching">We're still searching. <a href="/guests/new">You can recommend one here</a></h3>
+    {% endif %}
+    </section>
+    {% if done %}
+    <section class="past-exchange">
+      <h1>Completed <span class="code">#eXchanges:</span></h1>
+      <ul>
+        {% for exchange in done %}
+        <li>{{ exchange.firstname }} {{ exchange.lastname }}</li>
+        {% endfor %}
+      </ul>
+    </section>
   </section>
+  {% endif %}
 {% endblock %}

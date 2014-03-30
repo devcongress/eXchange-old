@@ -25,11 +25,18 @@ $top_margin: 4%;
 
 html, body, div, blockquote, p, span, hgroup, form, input { color: #000; }
 footer { margin: $top_margin 0; }
+.code { @include code_style(.9em); }
 .slogan { @include code_style(1.1em); }
 .flash {
   list-style: none;
   padding: 5px;
   text-align: center;
+}
+
+.searching {
+  padding-left: $top_margin;
+  font-style: italic;
+  color: tranparentize(#000,.3);
 }
 
 .notice { background: transparentize(#e065bb, .4); }

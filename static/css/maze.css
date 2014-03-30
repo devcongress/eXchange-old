@@ -4,6 +4,10 @@ html, body, div, blockquote, p, span, hgroup, form, input {
 footer {
   margin: 4% 0; }
 
+.code {
+  font-family: monaco, menlo, consolas, "liberation mono", "courier new", monospace;
+  font-size: 0.9em; }
+
 .slogan {
   font-family: monaco, menlo, consolas, "liberation mono", "courier new", monospace;
   font-size: 1.1em; }
@@ -12,6 +16,11 @@ footer {
   list-style: none;
   padding: 5px;
   text-align: center; }
+
+.searching {
+  padding-left: 4%;
+  font-style: italic;
+  color: tranparentize(black, 0.3); }
 
 .notice {
   background: rgba(224, 101, 187, 0.6); }

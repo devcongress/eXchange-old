@@ -12,21 +12,22 @@ from bson import ObjectId
 from models import *
 
 # Database configurations
-MONGODB_DATABASE = 'exchange'
 
 # MongoHQ on Heroku
 MONGOHQ_URL = os.environ.get('MONGOHQ_URL')
 
 if MONGOHQ_URL:
-    credentials = urlparse(MONGOHQ_URL)
-    MONGODB_HOST = credentials.hostname
-    MONGODB_PORT = credentials.port
-    MONGODB_USERNAME = credentials.username
-    MONGODB_PASSWORD = credentials.password
+    cred = urlparse(MONGOHQ_URL)
+    MONGODB_HOST = cred.hostname
+    MONGODB_PORT = int(cred.port)
+    MONGODB_USERNAME = cred.username
+    MONGODB_PASSWORD = cred.password
+    MONGODB_DATABASE = cred.path[1:]
 else:
     # MongoDB settings (for development machine.)
     MONGODB_HOST = os.environ.get('MONGODB_HOST')
-    MONGODB_PORT = os.environ.get('MONGODB_PORT')
+    MONGODB_PORT = int(os.environ.get('MONGODB_PORT'))
+    MONGODB_DATABASE = 'exchange'
 
 # Update app's configuration.
 app = Flask(__name__)
@@ -40,9 +41,13 @@ db.register([Participant])
 
 @app.route("/")
 def home():
-    return render_template('index.html')
+    done = db.Guest.find({'scheduled_for': {'$lt': datetime.utcnow()}})
+    print done.count()
+    upcoming = db.Guest.find_one({'scheduled_for': {'$gt': datetime.utcnow()}})
+    print upcoming
+    return render_template('index.html', upcoming=upcoming, done=done)
 
-@app.route("/guests/")
+@app.route("/exchanges")
 @app.route("/guests", methods=['POST'])
 def guests():
     #POST
@@ -56,7 +61,8 @@ def guests():
             return render_template("new_guest.html")
 
     #GET
-    return "List of completed and upcoming guests"
+    all_exchanges = db.Guest.find()
+    return all_exchanges
 
 @app.route("/guests/<name>")
 def guest(name):

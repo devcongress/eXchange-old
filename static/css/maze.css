@@ -2,7 +2,8 @@ html, body, div, blockquote, p, span, hgroup, form, input {
   color: #000; }
 
 footer {
-  margin: 4% 0; }
+  margin: 4% 0;
+  color: rgba(0, 0, 0, 0.4); }
 
 .code {
   font-family: monaco, menlo, consolas, "liberation mono", "courier new", monospace;

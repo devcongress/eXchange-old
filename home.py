@@ -34,7 +34,6 @@ app = Flask(__name__)
 app.config.from_object(__name__)
 app.secret_key = os.environ['EXCHANGE_SECRET']
 
-
 db = MongoKit(app)
 db.register([Guest])
 db.register([Participant])

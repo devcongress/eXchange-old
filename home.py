@@ -1,11 +1,11 @@
 from flask import (
-                   Flask,
-                   url_for,
-                   render_template,
-                   redirect,
-                   request,
-                   flash
-                  )
+    Flask,
+    url_for,
+    render_template,
+    redirect,
+    request,
+    flash
+)
 from hashlib import sha256
 from urlparse import urlparse
 from bson import ObjectId

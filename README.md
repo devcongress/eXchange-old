@@ -7,6 +7,6 @@ guest who tells his story, patiently answers questions from everyone part of
 the discussion, and then we have a nice time together. Want to join any ***#eXchange*** session? Register for all so you get automatically invited to every episode or register on a per episode basis. (Protip: Register once and for
 all.)
 
-Got something to #eXchange? [Volunteer as a guest or recommend somebody else](http://exchange.devcongress.com/guests/register). We'd contact you.
+Got something to #eXchange? [Volunteer as a guest or recommend somebody else](http://exchange.devcongress.com/guests/new). We'd contact you.
 immediately.
 

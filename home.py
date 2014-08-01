@@ -1,38 +1,38 @@
 from flask import (
-                   Flask,
-                   url_for,
-                   render_template,
-                   redirect,
-                   request,
-                   flash
-                  )
+    Flask,
+    url_for,
+    render_template,
+    redirect,
+    request,
+    flash
+)
 from hashlib import sha256
 from urlparse import urlparse
 from bson import ObjectId
 from models import *
 
 # Database configurations
-MONGODB_DATABASE = 'exchange'
 
 # MongoHQ on Heroku
 MONGOHQ_URL = os.environ.get('MONGOHQ_URL')
 
 if MONGOHQ_URL:
-    credentials = urlparse(MONGOHQ_URL)
-    MONGODB_HOST = credentials.hostname
-    MONGODB_PORT = credentials.port
-    MONGODB_USERNAME = credentials.username
-    MONGODB_PASSWORD = credentials.password
+    cred = urlparse(MONGOHQ_URL)
+    MONGODB_HOST = cred.hostname
+    MONGODB_PORT = int(cred.port)
+    MONGODB_USERNAME = cred.username
+    MONGODB_PASSWORD = cred.password
+    MONGODB_DATABASE = cred.path[1:]
 else:
     # MongoDB settings (for development machine.)
     MONGODB_HOST = os.environ.get('MONGODB_HOST')
-    MONGODB_PORT = os.environ.get('MONGODB_PORT')
+    MONGODB_PORT = int(os.environ.get('MONGODB_PORT'))
+    MONGODB_DATABASE = 'exchange'
 
 # Update app's configuration.
 app = Flask(__name__)
 app.config.from_object(__name__)
 app.secret_key = os.environ['EXCHANGE_SECRET']
-
 
 db = MongoKit(app)
 db.register([Guest])
@@ -40,10 +40,12 @@ db.register([Participant])
 
 @app.route("/")
 def home():
-    return render_template('index.html')
+    done = db.Guest.find({'scheduled_for': {'$lt': datetime.utcnow()}})
+    upcoming = db.Guest.find_one({'scheduled_for': {'$gt': datetime.utcnow()}})
+    return render_template('index.html', upcoming=upcoming, done=done)
 
-@app.route("/guests/")
-@app.route("/guests", methods=['POST'])
+@app.route("/exchanges")
+@app.route("/guests", methods=['GET', 'POST'])
 def guests():
     #POST
     if request.method == 'POST':
@@ -52,11 +54,10 @@ def guests():
             flash('We got that! Thanks for working to improve #eXchange')
             return redirect(url_for('home'))
         except Exception as e:
-            print e
             return render_template("new_guest.html")
 
     #GET
-    return "List of completed and upcoming guests"
+    return redirect(url_for('home'))
 
 @app.route("/guests/<name>")
 def guest(name):
@@ -67,11 +68,13 @@ def guest(name):
     # real eXchangers and just some fool trying out endpoints
     try:
         firstname, lastname = name.replace("-", " ").split()
+        print(firstname, lastname)
         guest = find_guest_by(firstname, lastname)
         if not guest:
             raise Exception()
-        return render_template('guest.html', guest=guest)
-    except:
+        return render_template('guest.html', guest=guest, now=datetime.utcnow())
+    except Exception as e:
+        print e
         return page_not_found()
 
 
@@ -89,7 +92,6 @@ def participants():
 
 def register_member(role, form_data):
     stripped = { k:v.strip() for k,v in form_data.iteritems() }
-    print stripped
     db[role].insert(stripped)
 
 

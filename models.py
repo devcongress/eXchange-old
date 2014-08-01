@@ -40,7 +40,8 @@ class Guest(Document):
 
     def scheduled_date_after_now(scheduled_date):
         def validate(scheduled_date):
-            return scheduled_date.timestamp() - datetime.now().timestamp() > 14*24*60*60
+            if scheduled_date.timestamp() - datetime.utcnow().timestamp() > 14*24*60*60:
+                return True
             raise Exception("Guests should be confirmed/suggest at least 2 weeks before their #eXchange is due.")
 
     structure = {

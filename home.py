@@ -6,15 +6,21 @@ from flask import (
     render_template,
     redirect,
 )
+from flask.ext.sqlalchemy import SQLAlchemy
 
-# Database configurations
-
+# Database configuration
 DATABASE_URL = os.environ.get('DATABASE_URL')
 
 # Update app's configuration.
 app = Flask(__name__)
 app.config.from_object(__name__)
 app.secret_key = os.environ['EXCHANGE_SECRET']
+
+db = SQLAlchemy(app)
+
+
+from models import Guest
+Guest
 
 
 @app.route("/")
@@ -30,13 +36,14 @@ def guests():
     return redirect(url_for('home'))
 
 
+@app.route("/guests/new")
+def new_guest():
+    return render_template("new_guest.html")
+
+
 @app.route("/guests/<name>")
 def guest(name):
-    if name == "new":
-        # Registering a possible guest.
-        return render_template('new_guest.html')
-
-    # real eXchangers and just some fool trying out endpoints
+    # Real eXchangers and just some fool fucking with our endpoints.
     try:
         return render_template('guest.html', guest=guest, now=datetime.utcnow())
     except Exception:

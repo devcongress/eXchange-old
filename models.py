@@ -1,32 +1,26 @@
-from datetime import datetime
+from home import db
 
 
-class Guest:
-    '''A guest scheduled for an #exchange session.  List of all guests are
+class Guest(db.Model):
+    '''A guest scheduled for an #eXchange session.  List of all guests are
        available at http://exchange.devcongress.com/guests
     '''
 
-    structure = {
-        "firstname": unicode,
-        "lastname": unicode,
-        "email_address": unicode,
-        "homepage": unicode,
-        "bio": unicode,
-        "accepted": bool,
+    id = db.Column(db.Integer, primary_key=True)
+    firstname = db.Column(db.String)
+    lastname = db.Column(db.String)
+    email_address = db.Column(db.String)
+    homepage = db.Column(db.String)
+    bio = db.Column(db.String)
+    github = db.Column(db.String)
+    twitter = db.Column(db.String)
+    scheduled_for = db.Column(db.DateTime)
 
-        # Github, and other social media usernames
-        "github": unicode,
-        "twitter": unicode,
-        "facebook": unicode,
-        "linkedin": unicode,
-
-        # Scheduling
-        "scheduled_for": datetime,
-        "created_at": datetime,
-        "updated_at": datetime,
-        "number_of_attendees": int,
-        "actual_time_taken": float
-    }
+    def __init__(self, firstname, lastname, email_address, bio):
+        self.firstname = firstname
+        self.lastname = lastname
+        self.email_address = email_address
+        self.bio = bio
 
     def fullname(self):
         return "{} {}".format(self.firstname, self.lastname)

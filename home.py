@@ -2,25 +2,18 @@ import os
 from datetime import datetime
 from flask import (
     Flask,
-    url_for,
-    render_template,
-    redirect,
+    render_template
 )
 from flask.ext.sqlalchemy import SQLAlchemy
 
-# Database configuration
-DATABASE_URL = os.environ.get('DATABASE_URL')
-
 # Update app's configuration.
 app = Flask(__name__)
-app.config.from_object(__name__)
-app.secret_key = os.environ['EXCHANGE_SECRET']
+app.config.from_object(os.environ['APP_SETTINGS'])
 
 db = SQLAlchemy(app)
 
 
-from models import Guest
-Guest
+from models import *
 
 
 @app.route("/")
@@ -33,7 +26,7 @@ def home():
 @app.route("/exchanges")
 @app.route("/guests")
 def guests():
-    return redirect(url_for('home'))
+    return render_template('guests.html', guests=Guest.query.all())
 
 
 @app.route("/guests/new")

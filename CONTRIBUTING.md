@@ -31,10 +31,9 @@ Your prompt text should be prefixed with `(venv)` (or whatever name you chose). 
 
 ###Running the migrations on your database
 
-The code assumes you set the `DATABASE_URL` environment variable on your
-system. It has the form:
+Set `EXCHANGE_DATABASE_URL` to your database URL. The URL should have the form:
 `postgres://username:password@database_server:port/database_name`. The user (or role)
-whose credentials you use should have the right permissions on the database.
+used should have the right permissions on the database.
 
 Then run the following commands:
 

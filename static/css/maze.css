@@ -226,3 +226,7 @@ html, body {
     color: #fff;
     opacity: .8;
 }
+
+#exchange-quote {
+    margin-top: 50px;
+}

@@ -6,8 +6,6 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" media="screen" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/maze.css') }}" media="screen" />
-    <link rel="stylesheet" href="{{ url_for('static',
-    filename='css/tinyscrollbar.css') }}" media="screen" />
     {% endblock %}
   </head>
   <body>
@@ -35,15 +33,15 @@
                     standard dummy text ever since the 1500s</p>
                     <div class="social-btns">
                     <div class="col-md-1">
-                        <a href="#" class="btn btn-block btn-github">
+                        <a href="#" target="_blank" class="btn btn-block btn-github">
                             <i class="fa fa-2x fa-github"></i></a>
                     </div>
                     <div class="col-md-1">
-                        <a href="#" class="btn btn-block">
+                        <a href="#" target="_blank" class="btn btn-block">
                             <i class="fa fa-2x fa-twitter"></i></a>
                     </div>
                     <div class="col-md-1">
-                        <a href="#" class="btn btn-block">
+                        <a href="#" target="_blank" class="btn btn-block">
                             <i class="fa fa-2x fa-linkedin"></i></a>
                     </div>
                 </div>
@@ -51,22 +49,116 @@
             </div><!-- row -->
             <div class="row">
                 <div class="col-md-3 col-md-offset-5 mt">
-                    <a href="#" class="btn btn-primary btn-lg">
+                    <a href="#" target="_blank" class="btn btn-primary btn-lg">
                          Ask him a question
                     </a>
                 </div>
             </div>
         </div><!--container-->
     </div><!--head-->
-<div id="past-exchange-head">
-    <div class="row">
-        <div class="col-md-12">
-             <h1>Past exChanges</h1>
+<div id="exchanges">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <div id="exchange-carousel" class="carousel slide"
+                    data-interval="false">
+                    <h2 class="heading">Past exChanges</h2>
+                    <a class="even-control-left" href="#exchange-carousel" data-slide="prev"><i class="fa fa-angle-left"></i></a>
+                    <a class="even-control-right" href="#exchange-carousel"
+                        data-slide="next"><i class="fa fa-angle-right"></i></a>
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="exchange">
+                                        <img class="img-circle img-responsive"
+                                        src="http://placehold.it/150x150"
+                                        alt="">
+                                        <h4>Kofi Champion</h4>
+                                        <a href="#" target="_blank" class="btn
+                                            btn-primary">Watch</a>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="exchange">
+                                        <img class="img-circle img-responsive"
+                                        src="http://placehold.it/150x150"
+                                        alt="">
+                                        <h4>Kofi Champion</h4>
+                                        <a href="#" target="_blank" class="btn
+                                            btn-primary">Watch</a>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="exchange">
+                                        <img class="img-circle img-responsive"
+                                        src="http://placehold.it/150x150"
+                                        alt="">
+                                        <h4>Kofi Champion</h4>
+                                        <a href="#" target="_blank" class="btn
+                                            btn-primary">Watch</a>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="exchange">
+                                        <img class="img-circle img-responsive"
+                                        src="http://placehold.it/150x150"
+                                        alt="">
+                                        <h4>Kofi Champion</h4>
+                                        <a href="#" target="_blank" class="btn
+                                            btn-primary">Watch</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="exchange">
+                                        <img class="img-circle img-responsive"
+                                        src="http://placehold.it/150x150"
+                                        alt="">
+                                        <h4>Kofi Champion</h4>
+                                        <a href="#" target="_blank" class="btn
+                                            btn-primary">Watch</a>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="exchange">
+                                        <img class="img-circle img-responsive"
+                                        src="http://placehold.it/150x150"
+                                        alt="">
+                                        <h4>Kofi Champion</h4>
+                                        <a href="#" target="_blank" class="btn
+                                            btn-primary">Watch</a>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="exchange">
+                                        <img class="img-circle img-responsive"
+                                        src="http://placehold.it/150x150"
+                                        alt="">
+                                        <h4>Kofi Champion</h4>
+                                        <a href="#" target="_blank" class="btn
+                                            btn-primary">Watch</a>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="exchange">
+                                        <img class="img-circle img-responsive"
+                                        src="http://placehold.it/150x150"
+                                        alt="">
+                                        <h4>Kofi Champion</h4>
+                                        <a href="#" target="_blank" class="btn
+                                            btn-primary">Watch</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-<div id="scrollbar">
-    <div class="row">
     </div>
 </div>
                     
@@ -74,7 +166,7 @@
   <!-- Javascript files -->
        <script src="//code.jquery.com/jquery-2.1.0.min.js"></script>
       <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-      <script src="{{ url_for('static', filename='js/maze.min.js') }}"></script>
+      <script src="{{ url_for('static', filename='js/maze.js') }}"></script>
 
       <!-- Google Analytics Tracking Code Begin -->
       <script>

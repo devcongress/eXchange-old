@@ -56,6 +56,8 @@
             </div>
         </div><!--container-->
     </div><!--head-->
+
+    <!-- Past Exchanges -->
 <div id="exchanges">
     <div class="container">
         <div class="row">
@@ -160,6 +162,83 @@
             </div>
         </div>
     </div>
+</div>
+    <!-- End of past exchanges -->
+<div id="new-guest">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2
+                col-md-offset-3">
+                <form role="form" action="/guests" method="post">
+                    <h2>Recommend a guest</h2>
+                    <hr class="colorgraph">
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <input type="text" name="firstname"
+                                id="firstname"
+                                value="{{request.form.firstname}}"
+                                class="form-control input-lg"
+                                placeholder="First Name" tabindex="1">
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <input type="text" name="lastname" id="lastname"
+                                value="{{request.form.lastname}}"
+                                class="form-control input-lg"
+                                placeholder="Last Name" tabindex="2">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                            <input type="email" name="email_address"
+                            id="email_address"
+                            value="{{request.form.email_address}}"
+                        class="form-control input-lg" placeholder="Email  address"
+                        tabindex="3">
+                    </div>
+                    <div class="form-group">
+                        <input type="url" name="homepage" id="homepage"
+                        value="{{request.form.homepage}}"
+                        class="form-control input-lg" placeholder="Homepage"
+                        tabindex="4">
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <input type="text" name="github" id="github"
+                               value="{{request.form.github}}"
+                                class="form-control input-lg"
+                                placeholder="Github" tabindex="5">
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <input type="text" name="twitter" id="twitter"
+                               value="{{request.form.twitter}}"
+                                class="form-control input-lg"
+                                placeholder="Twitter" tabindex="6">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <textarea rows="5" name="bio" id="bio"
+                        class="form-control input-lg" 
+                        placeholder="reason (bio of can replace this)"
+                        value="{{request.form.reason}}"
+                        tabindex="7"></textarea>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <button type="submit" class="btn" data-color="info"
+                                tabindex="8">I strongly recommend</button>
+                        </div>
+                    </div>
+                <hr class="colorgraph">
+                </div>
+            </div>
+        </div>
 </div>
                     
         

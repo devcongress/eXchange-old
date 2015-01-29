@@ -19,7 +19,7 @@ from models import *
 @app.route("/")
 def home():
     done = []
-    upcoming = []
+    upcoming = ['kdk']
     return render_template('index.html', upcoming=upcoming, done=done)
 
 

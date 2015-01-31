@@ -60,7 +60,7 @@ html, body {
     text-align: center;
 }
 
-#head h2 samp {
+samp {
     font-weight: 900;
     font-size: 40px;
 }
@@ -214,6 +214,11 @@ html, body {
 
 .even-control-right {
     right: 0;
+}
+
+#exchanges img {
+    height: 150px;
+    width: 150px;
 }
 
 /**Form**/

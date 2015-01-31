@@ -80,6 +80,14 @@ html, body {
     width: 150px;
 }
 
+#upcoming-date {
+    text-align: center;
+    font-weight: 300;
+    font-size: 20px;
+    color: #0AFF20;
+    letter-spacing: 8px;
+}
+
 .btn-join {
     margin-top: 15px;
     border-radius: 50px;

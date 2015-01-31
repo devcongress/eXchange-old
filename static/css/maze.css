@@ -236,6 +236,10 @@ samp {
     background: #f5f5f5;
 }
 
+#new-guest h2 {
+    text-align: center;
+}
+
 #footer {
     background: #2b2b2b;
     padding-top: 15px;

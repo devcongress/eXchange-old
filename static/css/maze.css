@@ -60,6 +60,11 @@ html, body {
     text-align: center;
 }
 
+#head h2 samp {
+    font-weight: 900;
+    font-size: 40px;
+}
+
 #head h3, h4 {
     color: white;
     font-weight: 400;
@@ -71,6 +76,8 @@ html, body {
 
 #head img {
     padding-bottom: 0px;
+    height: 150px;
+    width: 150px;
 }
 
 .btn-join {

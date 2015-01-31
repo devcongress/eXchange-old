@@ -5,64 +5,282 @@
     <title>eXchange - {% block title %}{% endblock %}</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" media="screen" />
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/maze.min.css') }}" media="screen" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/maze.css') }}" media="screen" />
     {% endblock %}
   </head>
   <body>
-    <div class="wrap">
-      {% block navigation %}
-        <nav class="navbar navbar-default" role="navigation">
-          <div class="container-fluid">
-            <div class="navbar-header">
-              <a class="navbar-brand" href="{{ url_for('home') }}">#eXchange</a>
+    <!--*********** HEADER ********-->
+    <div id="head">
+        <div class="container">
+            <div class="row">
+                <li><a href="#footer" class="btn btn-lg btn-info
+                    btn-join">Join</a></li>
+                <div class="upcoming-text">
+                    <h2>Upcoming exChange</h2>
+                </div>
             </div>
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-              <li style="margin-top:10px;"><a href="https://twitter.com/devcongress" class="twitter-follow-button" data-show-count="true" data-lang="en">Follow @devcongress</a></li>
-              <li><a href="#">All #eXchanges</a></li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Completed #eXchanges <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="/guests/edem-kumodzi">Edem Kumodzi</a></li>
-                </ul>
-              </li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Loading #eXchanges <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="/guests/alfred-rowe">Alfred Rowe</a></li>
-                </ul>
-              </li>
-            </ul>
-           </div><!-- /.navbar-collapse -->
-          </div><!-- /.container-fluid -->
-      </nav>
-      {% endblock %}
-      <div class="container">
-        <main>
-          <blockquote class="slogan">"Working with masters is the best way to learn a craft." - quote from <a href="http://www.amazon.com/Apprenticeship-Patterns-Guidance-Aspiring-Craftsman/dp/0596518382/ref=lh_ni_t?ie=UTF8&psc=1&smid=ATVPDKIKX0DER">Apprenticeship Patterns</a></blockquote>
-        {% with messages = get_flashed_messages() %}
-          {% if messages %}
-            <ul>
-              {% for message in messages %}
-              <li class="flash notice">{{ message }}</li>
-              {% endfor %}
-            </ul>
-          {% endif %}
-        {% endwith %}
-        {% block content %}
-        {% endblock %}
-      </main>
-      <footer class="footer">
-        Started in 2014, <strong><em>#eXchange</em></strong> is a <a href="http://devcongress.com">DevCongress</a> innitative—and
-        supported by our <strong>pragmatic</strong>, <strong>conscious</strong>
-        <a
-          href="https://groups.google.com/forum/?hl=en#!forum/devcongress">community</a>.<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></h1>
-      </footer>
+            <div class="row">
+                <div class="col-md-2 col-md-offset-3 mt guest-img-name">
+                        <figure>
+                            <img class="img-circle img-responsive"
+                            src="http://placehold.it/150x150" />
+                        </figure>
+                        <h4 id="guest-name">Mr. John Dee Azabuja</h4>
+                </div>
+                <div class="col-md-4 info-holder">
+                    <p>Lorem Ipsum is simply dummy text of the printing and the
+                    typesetting industry. Lorem Ipsum has been the industry's
+                    standard dummy text ever since the 1500s</p>
+                    <div class="social-btns">
+                    <div class="col-md-1">
+                        <a href="#" target="_blank" class="btn btn-block btn-github">
+                            <i class="fa fa-2x fa-github"></i></a>
+                    </div>
+                    <div class="col-md-1">
+                        <a href="#" target="_blank" class="btn btn-block">
+                            <i class="fa fa-2x fa-twitter"></i></a>
+                    </div>
+                    <div class="col-md-1">
+                        <a href="#" target="_blank" class="btn btn-block">
+                            <i class="fa fa-2x fa-linkedin"></i></a>
+                    </div>
+                </div>
+                </div>
+            </div><!-- row -->
+            <div class="row">
+                <div class="col-md-3 col-md-offset-5 mt">
+                    <a href="#" target="_blank" class="btn btn-primary btn-lg">
+                         Ask him a question
+                    </a>
+                </div>
+            </div>
+            <div id="exchange-quote">
+            <blockquote>
+                <p>Working with masters is the best way to
+                learn a craft.</p>
+                <footer>quote from <a href="#">Apprenticeship
+                        Patterns</a></footer>
+            </blockquote>
+            </div>
+        </div><!--container-->
+    </div><!--head-->
+
+    <!-- Past Exchanges -->
+<div id="exchanges">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <div id="exchange-carousel" class="carousel slide"
+                    data-interval="false">
+                    <h2 class="heading">Past exChanges</h2>
+                    <a class="even-control-left" href="#exchange-carousel" data-slide="prev"><i class="fa fa-angle-left"></i></a>
+                    <a class="even-control-right" href="#exchange-carousel"
+                        data-slide="next"><i class="fa fa-angle-right"></i></a>
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="exchange">
+                                        <img class="img-circle img-responsive"
+                                        src="http://placehold.it/150x150"
+                                        alt="">
+                                        <h4>Kofi Champion</h4>
+                                        <a href="#" target="_blank" class="btn
+                                            btn-primary">Watch</a>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="exchange">
+                                        <img class="img-circle img-responsive"
+                                        src="http://placehold.it/150x150"
+                                        alt="">
+                                        <h4>Kofi Champion</h4>
+                                        <a href="#" target="_blank" class="btn
+                                            btn-primary">Watch</a>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="exchange">
+                                        <img class="img-circle img-responsive"
+                                        src="http://placehold.it/150x150"
+                                        alt="">
+                                        <h4>Kofi Champion</h4>
+                                        <a href="#" target="_blank" class="btn
+                                            btn-primary">Watch</a>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="exchange">
+                                        <img class="img-circle img-responsive"
+                                        src="http://placehold.it/150x150"
+                                        alt="">
+                                        <h4>Kofi Champion</h4>
+                                        <a href="#" target="_blank" class="btn
+                                            btn-primary">Watch</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="exchange">
+                                        <img class="img-circle img-responsive"
+                                        src="http://placehold.it/150x150"
+                                        alt="">
+                                        <h4>Kofi Champion</h4>
+                                        <a href="#" target="_blank" class="btn
+                                            btn-primary">Watch</a>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="exchange">
+                                        <img class="img-circle img-responsive"
+                                        src="http://placehold.it/150x150"
+                                        alt="">
+                                        <h4>Kofi Champion</h4>
+                                        <a href="#" target="_blank" class="btn
+                                            btn-primary">Watch</a>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="exchange">
+                                        <img class="img-circle img-responsive"
+                                        src="http://placehold.it/150x150"
+                                        alt="">
+                                        <h4>Kofi Champion</h4>
+                                        <a href="#" target="_blank" class="btn
+                                            btn-primary">Watch</a>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="exchange">
+                                        <img class="img-circle img-responsive"
+                                        src="http://placehold.it/150x150"
+                                        alt="">
+                                        <h4>Kofi Champion</h4>
+                                        <a href="#" target="_blank" class="btn
+                                            btn-primary">Watch</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    </div>
-      <script src="//code.jquery.com/jquery-2.1.0.min.js"></script>
+</div>
+    <!-- End of past exchanges -->
+<div id="new-guest">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2
+                col-md-offset-3">
+                <form role="form" action="/guests" method="post">
+                    <h2>Recommend a guest</h2>
+                    <hr class="colorgraph">
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <input type="text" name="firstname"
+                                id="firstname"
+                                value="{{request.form.firstname}}"
+                                class="form-control input-lg"
+                                placeholder="First Name" tabindex="1">
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <input type="text" name="lastname" id="lastname"
+                                value="{{request.form.lastname}}"
+                                class="form-control input-lg"
+                                placeholder="Last Name" tabindex="2">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                            <input type="email" name="email_address"
+                            id="email_address"
+                            value="{{request.form.email_address}}"
+                        class="form-control input-lg" placeholder="Email  address"
+                        tabindex="3">
+                    </div>
+                    <div class="form-group">
+                        <input type="url" name="homepage" id="homepage"
+                        value="{{request.form.homepage}}"
+                        class="form-control input-lg" placeholder="Homepage"
+                        tabindex="4">
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <input type="text" name="github" id="github"
+                               value="{{request.form.github}}"
+                                class="form-control input-lg"
+                                placeholder="Github" tabindex="5">
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <input type="text" name="twitter" id="twitter"
+                               value="{{request.form.twitter}}"
+                                class="form-control input-lg"
+                                placeholder="Twitter" tabindex="6">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <textarea rows="5" name="bio" id="bio"
+                        class="form-control input-lg" 
+                        placeholder="reason (bio of can replace this)"
+                        value="{{request.form.reason}}"
+                        tabindex="7"></textarea>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <button type="submit" class="btn" data-color="info"
+                                tabindex="8">I strongly recommend</button>
+                         </div>
+                    </div>
+                </form>
+                <hr class="colorgraph">
+                </div>
+            </div>
+        </div>
+    </div> 
+        <!-- Footer -->
+        <div id="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-8 col-md-8 col-sm-8">
+                        <p>Started in 2014, <mark>#eXchange</mark> is a <a
+                            href="http://www.devcongress.com"
+                            target="_blank">DevCongress</a> innitiative and
+                        supported by our <strong>pragmatic, conscious</strong> <a
+                                href="#" target="_blank">community</a>
+                        </div>
+                    <div class="col-xs-3 col-md-3 col-sm-3">
+                    <form role="form" class="form-inline">
+                        <div class="form-group">
+                            <input type="email" name="email" id="email"
+                            class="form-control" placeholder="your@email.com" />
+                        </div>
+                        <button type="submit" class="btn btn-default">
+                            Join
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+</div>
+                    
+        
+  <!-- Javascript files -->
+       <script src="//code.jquery.com/jquery-2.1.0.min.js"></script>
       <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-      <script src="{{ url_for('static', filename='js/maze.min.js') }}"></script>
+      <script src="{{ url_for('static', filename='js/maze.js') }}"></script>
+
       <!-- Google Analytics Tracking Code Begin -->
       <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

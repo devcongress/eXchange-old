@@ -1,92 +1,41 @@
-import os
-from flask.ext.mongokit import MongoKit, Document
+from home import db
 from datetime import datetime
 
-def min_length(limit):
-    def validate(value):
-        if value >= limit:
-            return True
-        raise Exception("%s should be at least %s characters." % (value,length))
-    return validate
 
-
-class Participant(Document):
-    '''A participant participates in exactly one event at a time. (I know this doesn't make sense.)'''
-    __collection__ = "participants"
-
-    structure = {
-        "exchange_id": unicode, #TODO: better (or NoSQL-ic) foreign key?
-        "nickname"   : unicode,
-        "email"      : unicode,
-        "created_at" : datetime
-    }
-
-    required_fields = [ "nickname", "email", "exchange_id" ]
-    use_dot_notation = True
-
-    default_values = dict(created_at=datetime.utcnow)
-
-    validators = { "nickname": min_length(1), "email": min_length(5) }
-
-    def __repr__(self):
-        return "<#eXchange Participant {} <{}>>".format(self.nickname, self.email)
-
-class Guest(Document):
-    '''A guest scheduled for an #exchange session.
-       List of all guests are available at http://exchange.devcongress.com/guests
+class Guest(db.Model):
+    '''A guest scheduled for an #eXchange session.  List of all guests are
+       available at http://exchange.devcongress.com/guests
     '''
 
-    __collection__ = "guests"
+    id = db.Column(db.Integer, primary_key=True)
+    firstname = db.Column(db.String, nullable=False)
+    lastname = db.Column(db.String, nullable=False)
+    email_address = db.Column(db.String, unique=True, nullable=False)
+    homepage = db.Column(db.String)
+    bio = db.Column(db.String, nullable=False)
+    github = db.Column(db.String, unique=True, nullable=False)
+    twitter = db.Column(db.String, unique=True)
+    scheduled_for = db.Column(db.DateTime, unique=True)
 
-    def scheduled_date_after_now(scheduled_date):
-        def validate(scheduled_date):
-            if scheduled_date.timestamp() - datetime.utcnow().timestamp() > 14*24*60*60:
-                return True
-            raise Exception("Guests should be confirmed/suggest at least 2 weeks before their #eXchange is due.")
-
-    structure = {
-        "firstname"     : unicode,
-        "lastname"      : unicode,
-        "email_address" : unicode,
-        "homepage"      : unicode,
-        "bio"           : unicode,
-        "accepted"      : bool,
-
-        # Github, and other social media usernames
-        "github"        : unicode,
-        "twitter"       : unicode,
-        "facebook"      : unicode,
-        "linkedin"      : unicode,
-
-        # Scheduling
-        "scheduled_for" : datetime,
-        "created_at"    : datetime,
-        "updated_at"    : datetime,
-        "number_of_attendees": int,
-        "actual_time_taken": float
-    }
-
-    validators = {
-        "firstname"     : min_length(1),
-        "lastname"      : min_length(1),
-        "email_address" : min_length(1),
-        "bio"           : min_length(1)
-    }
-
-    use_dot_notation = True
-    required_fields = [
-                        "firstname",
-                        "lastname",
-                        "email_address",
-                        "bio"
-                      ]
-
-    default_values = dict(created_at=datetime.utcnow, updated_at=datetime.utcnow)
-
+    def __init__(self, firstname, lastname, email_address, bio, github):
+        self.firstname = firstname
+        self.lastname = lastname
+        self.email_address = email_address
+        self.bio = bio
+        self.github = github
 
     def fullname(self):
         return "{} {}".format(self.firstname, self.lastname)
 
-    def __repr__(self):
-        return "<#exchange Guest (Name: {})>".format(self.fullname())
+    def done(self):
+        if not self.scheduled_for or self.scheduled_for > datetime.now():
+            return "waiting"
+        return "done"
 
+    def scheduled_for_date(self):
+        if self.scheduled_for:
+            return self.scheduled_for
+        return "No time set for this guest yet"
+
+    def __repr__(self):
+        return "<#eXchange Guest (Name: {})>".format(self.fullname())

@@ -1,0 +1,21 @@
+{% extends "application.html" %}
+{% block title %}Guests / #eXchange 2015{% endblock %}
+{% block content %}
+  <section class="content">
+    <section class="upcoming">
+      <h1>All Guests (past and future)</h1>
+      {% if guests %}
+        {% for guest in guests %}
+          <div class="exchange-guest">
+            <h2 class="fullname"><a href="{{ guest.homepage or '' }}">{{ guest.fullname() }}</a></h2>
+            <h3 class="bio">{{ guest.bio }}</h3>
+            <p class="github">GitHub: <a href="https://github.com/{{ guest.github }}">{{ guest.github }}</a></p>
+            {% if guest.twitter %}
+            <p class="twitter">Twitter: <a href="https://twitter.com/{{ guest.twitter }}">{{ guest.twitter }}</a></p>
+            {% endif %}
+            <p class="scheduled-for {{ guest.done() }}">{{ guest.scheduled_for_date() }}</p>
+          </div>
+        {% endfor %}
+      {% else %}
+      {% endif %}
+{% endblock %}

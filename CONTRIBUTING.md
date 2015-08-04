@@ -5,28 +5,59 @@ All forms of contributions are welcome. Improvement of the Python (Flask) code, 
 ###Setup Requirements
 - [Python 2.7][Python]
 - [Flask][], a Python microframework.
-- [MongoDB][] (I know it's a bad choice, I know.)
+- [PostgreSQL][]
 
-There's awesome setup guides for both technologies on their respective homepages. You'd need [pip][] to install Flask. If you don't have plans to use [Flask][] for any more projects (even though I recommend you to give it a really good shot), setup your virtual environment first.
+There's awesome setup guides for both technologies on their respective homepages. You'd need [pip][] to install Flask. If you don't have plans to use [Flask][] for any more projects (even though we recommend you to give it a really good shot), setup your virtual environment first.
 
-###Setting up a Python virtual environment (venv)
-Again another [wonderful guide](http://www.virtualenv.org/en/latest/) by the project's authors. That should be good.
+###Setting up a Python virtual environment (`venv`)
+Again, another [wonderful guide](http://www.virtualenv.org/en/latest/) by the project's authors. That should be good. The requirements for the virtual env are:
+- It should use Python 2.7.x
+- You should name it `venv`. If you name it otherwise please make sure to update
+  `.gitignore` with that name.
 
 
-###Activating #eXchange's venv and installing required modules
-(Someone should contribute the Windows way.)
-For \*nix machines. It's as straight-forward as:
+###Activating #eXchange's `venv` and installing required packages
+
+(Can someone contribute the Windows way? Thanks.)
+
+For \*nix machines. It's as straightforward as:
 
     $ source venv/bin/activate
-    $ pip install -r requirements.txt
 
-To run the server: `$ python home.py`
+Your prompt text should be prefixed with `(venv)` (or whatever name you chose). Go ahead and install the required packages:
 
-You're set to submit those [PRs](https://github.com/devcongress/eXchange/pulls).
+    (venv) $ pip install -r requirements.txt
 
-I'd provide a guide on how to do PRs properly if the need arises.
+
+###Running the migrations on your database
+
+Set `EXCHANGE_DATABASE_URL` to your database URL. The URL should have the form:
+`postgres://username:password@database_server:port/database_name`. The user (or role)
+used should have the right permissions on the database.
+
+Then run the following commands:
+
+    (venv) $ python manage.py db init
+    (venv) $ python manage.py db upgrade
+
+Make sure the current command succeeds before moving on to the next.
+
+### Starting the server
+
+    (venv) $ python home.py
+
+
+
+By now you have a working application you're set to submit your [pull requests][PR]. Otherwise [submit an issue][GI].
+
+We'd provide a guide on how to do PRs properly if the need arises.
+
+
+
 
 [Flask]: http://flask.pocoo.org
-[MongoDB]: https://www.mongodb.org
+[PostgreSQL]: https://www.postgresql.org
 [pip]: https://pypi.python.org/pypi/pip
 [Python]: https://www.python.org/download/releases/2.7
+[GI]: https://github.com/devcongress/exchange/issues
+[PR]: https://github.com/devcongress/eXchange/pulls
